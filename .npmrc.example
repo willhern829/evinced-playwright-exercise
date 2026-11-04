@@ -1,0 +1,4 @@
+# Copy to .npmrc (gitignored). Token must stay on ONE line.
+# Registry line comes from the exercise PDF; the token is read from your shell env.
+# @evinced:registry=<JFROG_REGISTRY_URL>
+# //<JFROG_HOST_PATH>/:_authToken=${EVINCED_NPM_TOKEN}
