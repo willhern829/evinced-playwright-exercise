@@ -1,0 +1,10 @@
+# Suite-wide Evinced settings. Per-call options in a test override these.
+scan:
+  screenshots:
+    enabled: true
+# Settings for the aggregated reporter (one combined report per run).
+report:
+  format: html
+  outputDir: ./evinced-reports/aggregated
+  fileName: aggregatedReport
+  cleanup: false
