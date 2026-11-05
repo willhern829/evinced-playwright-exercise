@@ -24,7 +24,7 @@ global-setup.js                    setCredentials() once per run
 playwright.config.js               two projects (exercise, scale) + Evinced aggregated reporter
 evConfig.yaml                      suite-wide Evinced settings (screenshots on, aggregated report)
 tests/exercise/01-home-navigation  simple navigation, evAnalyze()
-tests/exercise/02-add-to-cart-flow multi-step flow, evStart()/evStop()
+tests/exercise/02-add-to-cart-flow multi-step flow, evStart()/evStop(), account handoff check
 fixtures/evinced-test.js           scale pattern: auto fixture wraps every test
 tests/scale/*.spec.js              ordinary specs with no Evinced code in them
 evinced-reports/                   generated reports (committed so you can open them)
@@ -59,6 +59,10 @@ Operating it at scale:
 - **Kill switch:** `EV_SWITCH_ON=false` turns scanning off for a run without touching code (`npm run a11y:off`), useful for fast local runs or isolating whether a failure is the app or the scan.
 - **CI:** credentials come from CI secrets as environment variables; nothing changes in the tests.
 - **Gating, as a next step:** save a JSON baseline with `evSaveFile` and use `evCompare` with `failOnNew` so a build fails only on new accessibility issues, not the existing backlog.
+
+## Not scripted: log in and log out
+
+The brief's complex flow ended with a log out. This store's Account link redirects to Shopify's hosted customer login on `shopify.com` (passwordless, a one-time code sent by email), so there's no form on the demo domain to drive and no account to log out of. Scripting it would mean a real customer account and reading email mid-test, which is the wrong trade for an exercise. The flow validates the handoff instead: the header link points at `/account`, and a request to it returns a 302 to `shopify.com`. The request is made with `page.request` so the scanned page never leaves the demo domain while continuous mode is running. On a customer site with its own login form, the same test would log in before the cart steps and log out at the end, and continuous mode would scan the login form and the logged-in header states along the way.
 
 ## Issues hit and how I solved them
 

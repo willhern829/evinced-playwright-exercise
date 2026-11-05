@@ -49,6 +49,16 @@ test('browse, add a product to the cart, and verify the cart', async ({ page }) 
   await row.getByRole('link', { name: 'Remove' }).click();
   await expect(page.getByRole('row', { name: new RegExp(PRODUCT_NAME.replace(/[.()]/g, '\\$&')) })).toHaveCount(0);
 
+  // Log in / log out was part of the brief. On this store the Account link hands off
+  // to Shopify's hosted passwordless login (shopify.com, one-time emailed code), so it
+  // can't be scripted without a real customer account. Validate the handoff instead,
+  // via a request so the scanned page stays on the demo domain.
+  const accountLink = page.getByRole('link', { name: /account/i }).first();
+  await expect(accountLink).toHaveAttribute('href', '/account');
+  const account = await page.request.get('/account', { maxRedirects: 0 });
+  expect(account.status()).toBe(302);
+  expect(account.headers()['location']).toMatch(/^https:\/\/shopify\.com\//);
+
   const issues = await evinced.evStop();
   await evinced.evSaveFile(issues, 'html', 'evinced-reports/exercise/02-add-to-cart-flow.html');
   await evinced.evSaveFile(issues, 'json', 'evinced-reports/exercise/02-add-to-cart-flow.json');
