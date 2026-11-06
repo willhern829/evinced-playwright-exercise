@@ -6,6 +6,9 @@ module.exports = defineConfig({
   testDir: './tests',
   globalSetup: require.resolve('./global-setup'),
   timeout: 60_000,
+  // One retry absorbs a demo-store hiccup (Shopify rate limiting or a cart drawer that
+  // doesn't open under load). A test that passes on retry is reported as "flaky", not hidden.
+  retries: 1,
   reporter: [
     ['list'],
     ['html', { open: 'never' }],
@@ -13,7 +16,8 @@ module.exports = defineConfig({
     ['@evinced/js-playwright-sdk/reporter'],
   ],
   use: {
-    baseURL: process.env.DEMO_BASE_URL,
+    // Defaults to the exercise demo store, so a blank or missing DEMO_BASE_URL still works.
+    baseURL: process.env.DEMO_BASE_URL || 'https://a11y-audits.com',
     trace: 'retain-on-failure',
   },
   projects: [

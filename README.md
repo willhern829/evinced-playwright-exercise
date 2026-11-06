@@ -26,6 +26,13 @@ npm run a11y:off                # same tests, Evinced switched off
 
 `.env` and `.npmrc` are gitignored. No credentials are in this repo or its history.
 
+Notes for running it elsewhere:
+- Needs Node 20 or later, which is Playwright's minimum (built and tested on Node 22).
+- On a fresh Linux machine, `npx playwright install --with-deps chromium` also installs the system libraries Chromium needs.
+- On Windows PowerShell, `npm run a11y:off` won't set the variable. Use `$env:EV_SWITCH_ON='false'; npx playwright test` instead.
+- The demo store is a live Shopify site with bot protection. Running the suite many times back to back from one machine gets rate limited (HTTP 429, then a "connection needs to be verified" page), and tests fail until it cools off. A normal run is fine. The config retries a failed test once, and Playwright reports a test that passes on retry as "flaky".
+- Running the tests overwrites the committed reports in `evinced-reports/` with your run's results. Issue counts on the flow can differ from the committed ones (see the last item below).
+
 ## What's here
 
 ```
