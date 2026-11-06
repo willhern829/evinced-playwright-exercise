@@ -16,7 +16,8 @@ test('browse, add a product to the cart, and verify the cart', async ({ page }) 
   await page.goto('/');
   await page.getByRole('tab', { name: 'Secured checkout' }).click();
   // Validate on the visible panel. The tabs never set aria-selected (a real a11y
-  // bug on this site, and one Evinced should flag), so we can't assert on it.
+  // bug on this site), so we can't assert on it. Evinced flags the same tab widget
+  // as "Missing contextual labeling" on the tab panels.
   await expect(page.getByRole('tabpanel')).toContainText('payment processes are guarded');
 
   // Catalog -> product page.
