@@ -1,6 +1,6 @@
 // Test 2: multi-step shopping flow with validations.
-// Mode: evStart / evStop (continuous). The flow opens accordions, switches tabs,
-// changes pages and updates the cart, so we want every DOM state scanned,
+// Mode: evStart / evStop (continuous). The flow switches a tab, changes pages,
+// opens the cart drawer and updates the cart, so we want every DOM state scanned,
 // not just the last page.
 const { test, expect } = require('@playwright/test');
 const { EvincedSDK } = require('@evinced/js-playwright-sdk');

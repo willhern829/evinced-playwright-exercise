@@ -52,7 +52,7 @@ evinced-reports/                   generated reports (committed so you can open 
 Report: `evinced-reports/exercise/01-home-navigation.html` (16 issues: 7 critical, 9 serious).
 
 **Test 2, shopping flow: `evStart()` / `evStop()`.** Switch a tab on the home page, go to the catalog, open a product, set quantity to 2, add to cart, check the "Added to your cart!" drawer, open the cart, check the line item, quantity (2) and total ($58.00 = 2 x $29.00), then remove it and check the cart is empty. The DOM changes constantly (tabs, drawer, page loads, cart updates), so continuous mode is the right one: it scans in the background and captures every state across all four pages, not only the final one.
-Report: `evinced-reports/exercise/02-add-to-cart-flow.html` (20 to 28 issues depending on the run, across `/`, `/collections/all`, the product page and `/cart`).
+Report: `evinced-reports/exercise/02-add-to-cart-flow.html` (20 to 28 issues depending on the run; the committed run has 21, reported on `/`, the product page and `/cart`).
 
 **Screenshots** are turned on with `scan.screenshots.enabled: true` (per call in the exercise tests, suite-wide in `evConfig.yaml`). In the HTML report, open any issue's info icon to see the page screenshot with the element highlighted.
 
