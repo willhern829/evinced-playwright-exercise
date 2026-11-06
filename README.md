@@ -2,6 +2,15 @@
 
 Playwright tests against the demo store at https://a11y-audits.com, with the Evinced Playwright JS SDK (`@evinced/js-playwright-sdk` 2.60.1) scanning for accessibility issues and writing HTML reports with screenshots.
 
+## View the reports
+
+GitHub shows `.html` files as source, so the committed reports are also published with GitHub Pages. Click any of these to open the report in your browser (click an issue's ⓘ for details and the screenshot):
+
+- [Test 1: home page, `evAnalyze()`](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/exercise/01-home-navigation.html)
+- [Test 2: shopping flow, `evStart()` / `evStop()`](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/exercise/02-add-to-cart-flow.html)
+- [Aggregated report, all tests in the run](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/aggregated/aggregatedReport.html)
+- Scale fixture, one report per test: [catalog lists products](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/scale/catalog-catalog-lists-products.html), [product page](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/scale/catalog-product-page-shows-price-and-add-to-cart.html), [contact page](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/scale/site-contact-page-loads.html), [FAQ accordion](https://willhern829.github.io/evinced-playwright-exercise/evinced-reports/scale/site-faq-accordion-opens.html)
+
 ## Run it
 
 ```bash
